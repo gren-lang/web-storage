@@ -8,11 +8,11 @@ clear : Task x Unit
 clear = Gren.Kernel.LocalStorage.clear
 
 
-get : String -> Task x (Maybe a)
+get : String -> Task x (Maybe String)
 get = Gren.Kernel.LocalStorage.get
 
 
-set : String -> a -> Task x Unit
+set : String -> String -> Task x Unit
 set = Gren.Kernel.LocalStorage.set
 
 
