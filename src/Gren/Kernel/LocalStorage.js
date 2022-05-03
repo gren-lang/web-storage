@@ -35,7 +35,7 @@ var _LocalStorage_set = F2(function (key, value) {
 });
 
 function _LocalStorage_remove(key) {
-    return __Scheduler_bindnig(function (callback) {
+    return __Scheduler_binding(function (callback) {
         localStorage.removeItem(key);
 
         return callback(__Scheduler_succeed(__Basics_Unit));
