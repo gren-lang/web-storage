@@ -1,0 +1,20 @@
+module LocalStorage exposing (clear)
+
+import Gren.Kernel.LocalStorage
+import Task exposing (Task)
+
+
+clear : Task x Unit
+clear = Gren.Kernel.LocalStorage.clear
+
+
+get : String -> Task x (Maybe a)
+get = Gren.Kernel.LocalStorage.get
+
+
+set : String -> a -> Task x Unit
+set = Gren.Kernel.LocalStorage.set
+
+
+remove : String -> Task x Unit
+remove = Gren.Kernel.LocalStorage.remove
