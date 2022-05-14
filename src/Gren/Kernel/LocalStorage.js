@@ -10,7 +10,7 @@ function _LocalStorage_clear() {
     return __Scheduler_binding(function (callback) {
         localStorage.clear();
 
-        callback(__Scheduler_succeed(__Basics_Unit));
+        return callback(__Scheduler_succeed(__Basics_Unit));
     })
 }
 
