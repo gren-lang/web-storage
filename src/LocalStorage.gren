@@ -1,4 +1,4 @@
-module LocalStorage exposing (clear)
+module LocalStorage exposing (clear, get, set, remove)
 
 import Gren.Kernel.LocalStorage
 import Task exposing (Task)
