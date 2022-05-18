@@ -6,13 +6,11 @@ import Gren.Kernel.Scheduler exposing (binding, succeed)
 
 */
 
-function _LocalStorage_clear() {
-    return __Scheduler_binding(function (callback) {
+var _LocalStorage_clear = __Scheduler_binding(function (callback) {
         localStorage.clear();
 
         return callback(__Scheduler_succeed(__Basics_Unit));
-    })
-}
+    });
 
 function _LocalStorage_get(key) {
     return __Scheduler_binding(function (callback) {
