@@ -1,7 +1,7 @@
 {
     "type": "package",
-    "name": "gren-lang/localstorage",
-    "summary": "TODO",
+    "name": "gren-lang/web-storage",
+    "summary": "Access to local- and session-storage for Gren applications",
     "license": "BSD-3-Clause",
     "version": "1.0.0",
     "exposed-modules": [
