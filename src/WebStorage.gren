@@ -1,7 +1,16 @@
-module WebStorage exposing (get, set, remove, clear)
+module WebStorage exposing (length, keyAtIndex, get, set, remove, clear)
+
 
 import Gren.Kernel.WebStorage
 import Task exposing (Task)
+
+
+length : Bool -> Task x Int
+length = Gren.Kernel.WebStorage.length
+
+
+keyAtIndex : Bool -> Int -> Task x (Maybe String)
+keyAtIndex = Gren.Kernel.WebStorage.key
 
 
 get : Bool -> String -> Task x (Maybe String)

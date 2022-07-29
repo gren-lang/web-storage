@@ -1,20 +1,35 @@
-module LocalStorage exposing (clear, get, set, remove)
+module LocalStorage exposing (length, keyAtIndex, clear, get, set, remove)
+
 
 import WebStorage
 import Task exposing (Task)
 
 
+length : Task x Int
+length =
+    WebStorage.length True
+
+
+keyAtIndex : Int -> Task x (Maybe String)
+keyAtIndex n =
+    WebStorage.keyAtIndex True n
+
+
 get : String -> Task x (Maybe String)
-get = WebStorage.get True
+get key =
+    WebStorage.get True key
 
 
 set : String -> String -> Task x Unit
-set = WebStorage.set True
+set key value =
+    WebStorage.set True key value
 
 
 remove : String -> Task x Unit
-remove = WebStorage.remove True
+remove key =
+    WebStorage.remove True key
 
 
 clear : Task x Unit
-clear = WebStorage.clear True
+clear =
+    WebStorage.clear True
