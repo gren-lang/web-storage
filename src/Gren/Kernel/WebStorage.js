@@ -1,14 +1,19 @@
 /*
 
-import Maybe exposing (Just, Nothing)
 import Basics exposing (Unit)
-import Gren.Kernel.Scheduler exposing (binding, succeed)
+import Maybe exposing (Just, Nothing)
+import WebStorage exposing (AccessError, NoValue, ReadBlocked, QuotaExceeded, WriteBlocked)
+import Gren.Kernel.Scheduler exposing (binding, succeed, fail)
 
 */
 
 var _WebStorage_length = function (useLocalStorage) {
     return __Scheduler_binding(function (callback) {
-        var length = _WebStorage_getStore(useLocalStorage).length;
+        try {
+            var length = _WebStorage_getStore(useLocalStorage).length;
+        } catch (e) {
+            return callback(__Scheduler_fail(__WebStorage_AccessError));
+        }
 
         return callback(__Scheduler_succeed(length));
     });
@@ -16,31 +21,47 @@ var _WebStorage_length = function (useLocalStorage) {
 
 var _WebStorage_key = F2(function(useLocalStorage, index) {
     return __Scheduler_binding(function (callback) {
-        var key = _WebStorage_getStore(useLocalStorage).key(index);
+        try {
+            var key = _WebStorage_getStore(useLocalStorage).key(index);
 
-        if (key === null) {
-            return callback(__Scheduler_succeed(__Maybe_Nothing));
-        } else {
-            return callback(__Scheduler_succeed(__Maybe_Just(key)));
+            if (key == null) {
+                return callback(__Scheduler_fail(__WebStorage_NoValue));
+            } else {
+                return callback(__Scheduler_succeed(key));
+            }
+        } catch (e) {
+            return callback(__Scheduler_fail(__WebStorage_ReadBlocked));
         }
     });
 });
 
 var _WebStorage_get = F2(function(useLocalStorage, key) {
     return __Scheduler_binding(function (callback) {
-        var item = _WebStorage_getStore(useLocalStorage).getItem(key);
+        try {
+            var item = _WebStorage_getStore(useLocalStorage).getItem(key);
 
-        if (item === null) {
-            return callback(__Scheduler_succeed(__Maybe_Nothing));
-        } else {
-            return callback(__Scheduler_succeed(__Maybe_Just(item)));
+            if (item == null) {
+                return callback(__Scheduler_fail(__WebStorage_NoValue));
+            } else {
+                return callback(__Scheduler_succeed(item));
+            }
+        } catch (e) {
+            return callback(__Scheduler_fail(__WebStorage_ReadBlocked));
         }
     });
 });
 
 var _WebStorage_set = F3(function (useLocalStorage, key, value) {
     return __Scheduler_binding(function (callback) {
-        _WebStorage_getStore(useLocalStorage).setItem(key, value);
+        try {
+            _WebStorage_getStore(useLocalStorage).setItem(key, value);
+        } catch (err) {
+            if (err.name === 'QuotaExceededError') {
+                return callback(__Scheduler_fail(__WebStorage_QuotaExceeded));
+            } else {
+                return callback(__Scheduler_fail(__WebStorage_WriteBlocked));
+            }
+        }
 
         return callback(__Scheduler_succeed(__Basics_Unit));
     })
@@ -48,7 +69,11 @@ var _WebStorage_set = F3(function (useLocalStorage, key, value) {
 
 var _WebStorage_remove = F2(function (useLocalStorage, key) {
     return __Scheduler_binding(function (callback) {
-        _WebStorage_getStore(useLocalStorage).removeItem(key);
+        try {
+            _WebStorage_getStore(useLocalStorage).removeItem(key);
+        } (err) {
+            return callback(__Scheduler_fail(__WebStorage_AccessError));
+        }
 
         return callback(__Scheduler_succeed(__Basics_Unit));
     })
@@ -56,7 +81,11 @@ var _WebStorage_remove = F2(function (useLocalStorage, key) {
 
 var _WebStorage_clear = function (useLocalStorage) {
     return __Scheduler_binding(function (callback) {
-        _WebStorage_getStore(useLocalStorage).clear();
+        try {
+            _WebStorage_getStore(useLocalStorage).clear();
+        } (err) {
+            return callback(__Scheduler_fail(__WebStorage_AccessError));
+        }
 
         return callback(__Scheduler_succeed(__Basics_Unit));
     });

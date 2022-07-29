@@ -2,34 +2,35 @@ module LocalStorage exposing (length, keyAtIndex, clear, get, set, remove)
 
 
 import WebStorage
+import Internal.WebStorage as Impl
 import Task exposing (Task)
 
 
-length : Task x Int
+length : Task WebStorage.AccessError Int
 length =
-    WebStorage.length True
+    Impl.length True
 
 
-keyAtIndex : Int -> Task x (Maybe String)
+keyAtIndex : Int -> Task WebStorage.ReadError String
 keyAtIndex n =
-    WebStorage.keyAtIndex True n
+    Impl.keyAtIndex True n
 
 
-get : String -> Task x (Maybe String)
+get : String -> Task WebStorage.ReadError String
 get key =
-    WebStorage.get True key
+    Impl.get True key
 
 
-set : String -> String -> Task x Unit
+set : String -> String -> Task WebStorage.WriteError Unit
 set key value =
-    WebStorage.set True key value
+    Impl.set True key value
 
 
-remove : String -> Task x Unit
+remove : String -> Task WebStorage.AccessError Unit
 remove key =
-    WebStorage.remove True key
+    Impl.remove True key
 
 
-clear : Task x Unit
+clear : Task WebStorage.AccessError Unit
 clear =
-    WebStorage.clear True
+    Impl.clear True
