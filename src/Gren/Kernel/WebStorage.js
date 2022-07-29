@@ -71,7 +71,7 @@ var _WebStorage_remove = F2(function (useLocalStorage, key) {
     return __Scheduler_binding(function (callback) {
         try {
             _WebStorage_getStore(useLocalStorage).removeItem(key);
-        } (err) {
+        } catch (err) {
             return callback(__Scheduler_fail(__WebStorage_AccessError));
         }
 
@@ -83,7 +83,7 @@ var _WebStorage_clear = function (useLocalStorage) {
     return __Scheduler_binding(function (callback) {
         try {
             _WebStorage_getStore(useLocalStorage).clear();
-        } (err) {
+        } catch (err) {
             return callback(__Scheduler_fail(__WebStorage_AccessError));
         }
 
