@@ -6,7 +6,8 @@
     "version": "1.0.0",
     "exposed-modules": [
         "WebStorage",
-        "LocalStorage"
+        "LocalStorage",
+        "SessionStorage"
     ],
     "gren-version": "0.1.0 <= v < 0.2.0",
     "dependencies": {
