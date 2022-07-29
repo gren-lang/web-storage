@@ -1,0 +1,20 @@
+module WebStorage exposing (get, set, remove, clear)
+
+import Gren.Kernel.WebStorage
+import Task exposing (Task)
+
+
+get : Bool -> String -> Task x (Maybe String)
+get = Gren.Kernel.WebStorage.get
+
+
+set : Bool -> String -> String -> Task x Unit
+set = Gren.Kernel.WebStorage.set
+
+
+remove : Bool -> String -> Task x Unit
+remove = Gren.Kernel.WebStorage.remove
+
+
+clear : Bool -> Task x Unit
+clear = Gren.Kernel.WebStorage.clear

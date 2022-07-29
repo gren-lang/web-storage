@@ -1,20 +1,20 @@
 module LocalStorage exposing (clear, get, set, remove)
 
-import Gren.Kernel.LocalStorage
+import WebStorage
 import Task exposing (Task)
 
 
-clear : Task x Unit
-clear = Gren.Kernel.LocalStorage.clear
-
-
 get : String -> Task x (Maybe String)
-get = Gren.Kernel.LocalStorage.get
+get = WebStorage.get True
 
 
 set : String -> String -> Task x Unit
-set = Gren.Kernel.LocalStorage.set
+set = WebStorage.set True
 
 
 remove : String -> Task x Unit
-remove = Gren.Kernel.LocalStorage.remove
+remove = WebStorage.remove True
+
+
+clear : Task x Unit
+clear = WebStorage.clear True
