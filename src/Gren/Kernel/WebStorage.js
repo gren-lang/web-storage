@@ -1,6 +1,5 @@
 /*
 
-import Basics exposing (Unit)
 import Maybe exposing (Just, Nothing)
 import WebStorage exposing (AccessError, NoValue, ReadBlocked, QuotaExceeded, WriteBlocked)
 import Gren.Kernel.Scheduler exposing (binding, succeed, fail)
@@ -63,7 +62,7 @@ var _WebStorage_set = F3(function (useLocalStorage, key, value) {
             }
         }
 
-        return callback(__Scheduler_succeed(__Basics_Unit));
+        return callback(__Scheduler_succeed({}));
     })
 });
 
@@ -75,7 +74,7 @@ var _WebStorage_remove = F2(function (useLocalStorage, key) {
             return callback(__Scheduler_fail(__WebStorage_AccessError));
         }
 
-        return callback(__Scheduler_succeed(__Basics_Unit));
+        return callback(__Scheduler_succeed({}));
     })
 });
 
@@ -87,7 +86,7 @@ var _WebStorage_clear = function (useLocalStorage) {
             return callback(__Scheduler_fail(__WebStorage_AccessError));
         }
 
-        return callback(__Scheduler_succeed(__Basics_Unit));
+        return callback(__Scheduler_succeed({}));
     });
 };
 

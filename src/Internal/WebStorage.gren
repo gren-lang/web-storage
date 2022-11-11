@@ -18,13 +18,13 @@ get : Bool -> String -> Task WebStorage.ReadError String
 get = Gren.Kernel.WebStorage.get
 
 
-set : Bool -> String -> String -> Task WebStorage.WriteError Unit
+set : Bool -> String -> String -> Task WebStorage.WriteError {}
 set = Gren.Kernel.WebStorage.set
 
 
-remove : Bool -> String -> Task WebStorage.AccessError Unit
+remove : Bool -> String -> Task WebStorage.AccessError {}
 remove = Gren.Kernel.WebStorage.remove
 
 
-clear : Bool -> Task WebStorage.AccessError Unit
+clear : Bool -> Task WebStorage.AccessError {}
 clear = Gren.Kernel.WebStorage.clear

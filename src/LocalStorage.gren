@@ -57,20 +57,20 @@ get key =
 {-| Insert the key-value pair into the store. If the key already exist
 it will be overwritten. If it doesn't exist, it will be added.
 -}
-set : String -> String -> Task WebStorage.WriteError Unit
+set : String -> String -> Task WebStorage.WriteError {}
 set key value =
     Impl.set True key value
 
 
 {-| Remove the key-value pair from the store.
 -}
-remove : String -> Task WebStorage.AccessError Unit
+remove : String -> Task WebStorage.AccessError {}
 remove key =
     Impl.remove True key
 
 
 {-| Remove all key-value pairs from the store.
 -}
-clear : Task WebStorage.AccessError Unit
+clear : Task WebStorage.AccessError {}
 clear =
     Impl.clear True

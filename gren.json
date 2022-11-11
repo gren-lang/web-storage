@@ -1,5 +1,6 @@
 {
     "type": "package",
+    "platform": "browser",
     "name": "gren-lang/web-storage",
     "summary": "Access to local- and session-storage for Gren applications",
     "license": "BSD-3-Clause",
@@ -9,9 +10,9 @@
         "LocalStorage",
         "SessionStorage"
     ],
-    "gren-version": "0.1.0 <= v < 0.2.0",
+    "gren-version": "0.2.0 <= v < 0.3.0",
     "dependencies": {
-        "gren-lang/core": "1.0.0 <= v < 2.0.0"
+        "gren-lang/core": "3.0.0 <= v < 4.0.0"
     },
     "test-dependencies": {}
 }
