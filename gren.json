@@ -4,15 +4,14 @@
     "name": "gren-lang/web-storage",
     "summary": "Access to local- and session-storage for Gren applications",
     "license": "BSD-3-Clause",
-    "version": "2.0.0",
+    "version": "3.0.0",
     "exposed-modules": [
         "WebStorage",
         "LocalStorage",
         "SessionStorage"
     ],
-    "gren-version": "0.2.0 <= v < 0.3.0",
+    "gren-version": "0.3.0 <= v < 0.4.0",
     "dependencies": {
-        "gren-lang/core": "3.0.0 <= v < 4.0.0"
-    },
-    "test-dependencies": {}
+        "gren-lang/core": "4.0.0 <= v < 5.0.0"
+    }
 }
